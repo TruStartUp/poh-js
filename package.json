@@ -1,0 +1,34 @@
+{
+  "name": "poh-js",
+  "version": "1.0.0",
+  "description": "Tru's Proof Of Humanity Library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TruStartUp/poh-js.git"
+  },
+  "keywords": [
+    "poh"
+  ],
+  "author": "Tru Startup SAS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TruStartUp/poh-js/issues"
+  },
+  "homepage": "https://github.com/TruStartUp/poh-js#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "lerna": "^3.22.1",
+    "mocha": "^8.1.1",
+    "rollup": "^2.26.3",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  }
+}

@@ -2,9 +2,13 @@
   "name": "poh-js",
   "version": "1.0.0",
   "description": "Tru's Proof Of Humanity Library",
-  "main": "index.js",
+  "main": "dist/poh/index.cjs.js",
+  "module": "dist/poh/index.esm.js",
+  "browser": "dist/poh/index.umd.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "lerna run build",
+    "test": "npm run build && lerna exec -- npm test",
+    "compile": "cd dependencies/contracts/ && truffle compile && cp -R dependencies/contracts/build/contracts/ packages/contracts"
   },
   "repository": {
     "type": "git",
@@ -21,14 +25,20 @@
   "homepage": "https://github.com/TruStartUp/poh-js#readme",
   "devDependencies": {
     "@babel/core": "^7.11.1",
+    "@babel/polyfill": "^7.10.4",
     "@babel/preset-env": "^7.11.0",
+    "@babel/register": "^7.10.5",
+    "@rollup/plugin-babel": "^5.1.0",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "lerna": "^3.22.1",
     "mocha": "^8.1.1",
-    "rollup": "^2.26.3",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "nyc": "^15.1.0",
+    "rollup": "^2.22.2",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-cleanup": "^3.1.1"
   }
 }

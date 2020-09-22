@@ -9,11 +9,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
     "test": "nyc mocha --recursive --exit"
   },
   "author": "Tru Startup SAS",
   "homepage": "https://github.com/TruStartUp/poh-js/tree/master/packages/poh#readme",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "p5": "^1.1.9"
+  }
 }

@@ -1,3 +1,3 @@
-[submodule "dependencies"]
-	path = dependencies
+[submodule "dependencies/contracts"]
+	path = dependencies/contracts
 	url = git@github.com:TruStartUp/contracts.git

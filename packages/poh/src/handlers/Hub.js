@@ -1,9 +1,10 @@
-import { web3 } from "../utils";
+import { web3, HUB_ADDRESS } from "../utils";
+import HubContract from '../../contracts/Hub.json';
 
 export default class Hub {
-  constructor(address) {
-    this.instance = new web3.eth.Contract(Hub.abi, address);
-    this.address = address;
+  constructor() {
+    this.instance = new web3.eth.Contract(HubContract.abi, HUB_ADDRESS);
+    this.address = HUB_ADDRESS;
   }
   getHashingSpaces(index) {
     return new Promise((resolve, reject) => {

@@ -1,15 +1,10 @@
-import HashingSpace from "./handlers/HashingSpace";
 /**
  * Poh Class snippet.
  */
 export default class Poh {
-
-  constructor(containerId, apiKey, callbackonProof) {
-    this.callback
+  constructor(containerId, apiKey, callbackOnProof) {
+    this.apiKey = apiKey;
     this.containerId = containerId;
-
-
-    this.hashingSpace = new HashingSpace(apiKey);
   }
 
   /**

@@ -1,15 +1,35 @@
-import { web3, HUB_ADDRESS } from "../utils";
+import { send, web3, HUB_ADDRESS } from "../utils";
 import HubContract from '../../contracts/Hub.json';
+import HashingSpace from './HashingSpace';
 
 export default class Hub {
   constructor() {
     this.instance = new web3.eth.Contract(HubContract.abi, HUB_ADDRESS);
     this.address = HUB_ADDRESS;
   }
-  getHashingSpaces(index) {
+
+  addHashingSpace(imageHash, name, user, from = '') {
     return new Promise((resolve, reject) => {
-      this.instance.methods.userHashingSpaces(index)
+      send(this.instance.methods.addHashingSpace(imageHash, name, user), from)
+        .then(resolve)
+        .catch(reject);
+    })
+  }
+
+  getApiKey(index, user, from = '') {
+    return new Promise((resolve, reject) => {
+      this.instance.methods.getApiKey(index, user)
         .call()
+        .then(resolve)
+        .catch(reject);
+    })
+  }
+
+  getHashingSpace(apiKey) {
+    return new Promise((resolve, reject) => {
+      this.instance.methods.getHashingSpace(apiKey)
+        .call()
+        .then((hashingSpaceAddress) => new HashingSpace(hashingSpaceAddress))
         .then(resolve)
         .catch(reject);
     })

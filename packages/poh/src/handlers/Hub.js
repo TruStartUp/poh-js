@@ -3,9 +3,9 @@ import HubContract from '../../contracts/Hub.json';
 import HashingSpace from './HashingSpace';
 
 export default class Hub {
-  constructor() {
-    this.instance = new web3.eth.Contract(HubContract.abi, HUB_ADDRESS);
-    this.address = HUB_ADDRESS;
+  constructor(address) {
+    this.address = address || HUB_ADDRESS;
+    this.instance = new web3.eth.Contract(HubContract.abi, this.address);
   }
 
   addHashingSpace(imageHash, name, user, from = '') {
@@ -18,8 +18,9 @@ export default class Hub {
 
   getApiKey(index, user, from = '') {
     return new Promise((resolve, reject) => {
-      this.instance.methods.getApiKey(index, user)
-        .call()
+      web3.eth.getAccounts()
+        .then(([account]) => this.instance.methods.getApiKey(index, user)
+          .call({ from: from || account}))
         .then(resolve)
         .catch(reject);
     })

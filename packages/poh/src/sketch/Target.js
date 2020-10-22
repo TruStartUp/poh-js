@@ -1,9 +1,9 @@
 export default class Target {
-  constructor(pos, img, p5) {
+  constructor(pos, P5Img, p5) {
     this.p5 = p5;
-    this.width = img.width;
-    this.height = img.height;
-    this.img = img;
+    this.width = P5Img.width;
+    this.height = P5Img.height;
+    this.img = P5Img;
     this.pos = pos;
     this.shadow();
   }

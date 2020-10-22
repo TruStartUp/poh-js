@@ -2,24 +2,30 @@ import Web3 from 'web3';
 import Target from './Target';
 import Logo from './Logo';
 
-const web3 = new Web3('https://public-node.testnet.rsk.co/2.0.1');
+const web3 = new Web3(new Web3.providers.HttpProvider('https://public-node.testnet.rsk.co/2.0.1'));
 
 export default class Puzzle {
-  constructor(dummies, targetImg, logoImg, width, p5) {
+  constructor(
+    dummies, targetImg, logoImg, width,
+    logoUrl, darkBackgroundColor, lightBackgroundColor, p5,
+  ) {
     this.p5 = p5;
     this.positions = [];
     this.dummiesImg = dummies;
     this.targetImg = targetImg;
     this.logoImg = logoImg;
+    this.logoUrl = logoUrl;
     this.width = width;
-    this.colorHex = '#D0CFCF';
+    this.darkBackground = darkBackgroundColor;
+    this.lightBackground = lightBackgroundColor;
+    this.colorHex = lightBackgroundColor;
   }
 
   setup() {
     this.dummmies = this.dummiesImg
       .map((dummy) => new Target(this.getRandomPosition(), dummy, this.p5));
     this.target = new Target(this.getRandomPosition(), this.targetImg, this.p5);
-    this.logo = new Logo(this.getRandomPosition(), this.logoImg, this.p5);
+    this.logo = new Logo(this.getRandomPosition(), this.logoImg, this.logoUrl, this.p5);
   }
 
   distance() {
@@ -55,8 +61,13 @@ export default class Puzzle {
   }
 
   sendHash() {
-    const imgHash = web3.utils.soliditySha3(this.logo.getImage().join());
-    return web3.utils.soliditySha3(imgHash, this.distance());
+    return new Promise((resolve, reject) => {
+      this.logo.getImage()
+        .then((image) => web3.utils.soliditySha3(image))
+        .then((imgHash) => web3.utils.soliditySha3(imgHash, this.distance()))
+        .then(resolve)
+        .catch(reject);
+    });
   }
 
   draw() {
@@ -68,7 +79,7 @@ export default class Puzzle {
 
   mouseMoved(x, y) {
     this.colorHex = ((x >= 0 && x < this.width) && (y >= 0 && y < this
-      .width)) ? '#B4B1B1' : '#D0CFCF';
+      .width)) ? this.lightBackground : this.darkBackground;
   }
 
   mousePressed(x, y) {
@@ -77,7 +88,6 @@ export default class Puzzle {
 
   mouseReleased() {
     this.logo.mouseReleased();
-    this.sendHash();
   }
 
   mouseDragged(x, y) {

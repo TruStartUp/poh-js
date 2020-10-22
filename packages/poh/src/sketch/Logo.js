@@ -1,9 +1,12 @@
+import { Image } from 'image-js';
+
 export default class Logo {
-  constructor(pos, img, p5) {
+  constructor(pos, P5Img, imageUrl, p5) {
     this.p5 = p5;
-    this.width = img.width;
-    this.height = img.height;
-    this.img = img;
+    this.width = P5Img.width;
+    this.height = P5Img.height;
+    this.img = P5Img;
+    this.eventualImage = Image.load(imageUrl);
     this.pos = pos;
     this.inside = false;
     this.dx = 0;
@@ -11,8 +14,11 @@ export default class Logo {
   }
 
   getImage() {
-    this.img.loadPixels();
-    return this.img.pixels;
+    return new Promise((resolve, reject) => {
+      this.eventualImage
+        .then((image) => resolve(image.data.join()))
+        .catch(reject);
+    });
   }
 
   getPos() {

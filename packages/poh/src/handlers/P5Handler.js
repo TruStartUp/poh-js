@@ -3,20 +3,21 @@ import Puzzle from '../sketch/Puzzle';
 
 let puzzle;
 let componentCall;
-const width = 320;
-const image = require('../assets/puzzle/TRU.png');
-const imageStar = require('../assets/puzzle/star64x64.png');
-const imageCloud = require('../assets/puzzle/cloud64x64.png');
-const imagePear = require('../assets/puzzle/pear64x64.png');
+const imageStar = require('../assets/star.png');
+const imageCloud = require('../assets/cloud.png');
+const imagePear = require('../assets/pear.png');
 
 export class P5Handler {
-  constructor(color) {
-    this.color = color;
+  constructor(logoUrl, width, lightBackgroundColor, darkBackgroundColor) {
+    this.logoUrl = logoUrl;
+    this.width = width;
+    this.lightBackgroundColor = lightBackgroundColor;
+    this.darkBackgroundColor = darkBackgroundColor;
   }
 
   initialize() {
     // eslint-disable-next-line no-use-before-define
-    this.p5 = new P5(this.main);
+    this.p5 = new P5(this.main.bind(this));
   }
 
   destroy() {
@@ -33,18 +34,27 @@ export class P5Handler {
     let starImg;
     let canvas;
 
-    p5.preload = () => {
-      img = p5.loadImage(image);
-      targetImg = p5.loadImage(image);
+    p5.preload = async () => {
+      img = await p5.loadImage(this.logoUrl);
+      targetImg = await p5.loadImage(this.logoUrl);
       pearImg = p5.loadImage(imagePear);
       cloudImg = p5.loadImage(imageCloud);
       starImg = p5.loadImage(imageStar);
     };
 
     p5.setup = () => {
-      puzzle = new Puzzle([pearImg, cloudImg, starImg], targetImg, img, width, p5);
+      puzzle = new Puzzle(
+        [pearImg, cloudImg, starImg],
+        targetImg,
+        img,
+        this.width,
+        this.logoUrl,
+        this.lightBackgroundColor,
+        this.darkBackgroundColor,
+        p5,
+      );
       puzzle.setup();
-      canvas = p5.createCanvas(width, width);
+      canvas = p5.createCanvas(this.width, this.width);
       canvas.parent('p5Canvas');
     };
 
@@ -60,12 +70,12 @@ export class P5Handler {
       puzzle.mousePressed(p5.mouseX, p5.mouseY);
     };
     p5.mouseDragged = () => {
-      if (p5.mouseX >= 0 && p5.mouseX <= width && p5.mouseY >= 0 && p5.mouseY <= width) {
+      if (p5.mouseX >= 0 && p5.mouseX <= this.width && p5.mouseY >= 0 && p5.mouseY <= this.width) {
         puzzle.mouseDragged(p5.mouseX, p5.mouseY);
       }
     };
     p5.mouseReleased = () => {
-      if (p5.mouseX >= 0 && p5.mouseX <= width && p5.mouseY >= 0 && p5.mouseY <= width) {
+      if (p5.mouseX >= 0 && p5.mouseX <= this.width && p5.mouseY >= 0 && p5.mouseY <= this.width) {
         puzzle.mouseReleased();
         // eslint-disable-next-line no-use-before-define
         hashImageOnComponent();

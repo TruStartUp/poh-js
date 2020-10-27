@@ -1,5 +1,5 @@
 {
-  "name": "poh-js",
+  "name": "@tru/poh-js",
   "version": "1.0.0",
   "description": "Tru's Proof Of Humanity Library",
   "main": "packages/poh/src/index.js",
@@ -9,7 +9,8 @@
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "format": "prettier --config ./.prettierrc --write ./packages/**/*.js",
-    "compile": "cd ./dependencies/contracts/ && truffle compile && cd ../.. && cp -R ./dependencies/contracts/build/contracts/ packages/poh"
+    "compile": "cd ./dependencies/contracts/ && truffle compile && cd ../.. && cp -R ./dependencies/contracts/build/contracts/ packages/poh",
+    "lint": "eslint --cache --fix ./packages/"
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,9 @@
     "babel-eslint": "^10.1.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
     "lerna": "^3.22.1",
     "mocha": "^8.1.1",
     "nyc": "^15.1.0",

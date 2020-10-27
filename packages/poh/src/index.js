@@ -1,5 +1,5 @@
-import Hub from "./handlers/Hub";
-import { P5Handler , setHashingFunction} from "./handlers/P5Handler";
+import Hub from './handlers/Hub';
+import { P5Handler, setHashingFunction } from './handlers/P5Handler';
 /**
  * Poh Class snippet.
  */
@@ -19,9 +19,11 @@ export default class Poh {
     return this.hub.getHashingSpace(this.apiKey);
   }
 
-  intialize() {
-    // this.p5Instance = new P5Handler('#D0CFCF');
-    // this.p5Instance.initialize();
+  initialize() {
+    this.p5Instance = new P5Handler(this.containerId,
+      'https://firebasestorage.googleapis.com/v0/b/trustartupcol.appspot.com/o/logos%2FTRU.png?alt=media&token=60c71486-8b58-4beb-8216-d1550c00b38d',
+      320, '#D0CFCF', '#B4B1B1');
+    this.p5Instance.initialize();
     setHashingFunction(this.callbackOnProof);
   }
 
@@ -35,7 +37,7 @@ export default class Poh {
       this.eventualHashingSpace
         .then((hashingSpace) => hashingSpace.validate(hash))
         .then(resolve)
-        .catch(reject)
+        .catch(reject);
     });
   }
 }

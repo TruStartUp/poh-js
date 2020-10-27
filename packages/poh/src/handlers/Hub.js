@@ -1,4 +1,4 @@
-import { send, web3, HUB_ADDRESS } from "../utils";
+import { send, web3, HUB_ADDRESS } from '../utils';
 import HubContract from '../../contracts/Hub.json';
 import HashingSpace from './HashingSpace';
 
@@ -13,17 +13,17 @@ export default class Hub {
       send(this.instance.methods.addHashingSpace(imageHash, name, user), from)
         .then(resolve)
         .catch(reject);
-    })
+    });
   }
 
   getApiKey(index, user, from = '') {
     return new Promise((resolve, reject) => {
       web3.eth.getAccounts()
         .then(([account]) => this.instance.methods.getApiKey(index, user)
-          .call({ from: from || account}))
+          .call({ from: from || account }))
         .then(resolve)
         .catch(reject);
-    })
+    });
   }
 
   getHashingSpace(apiKey) {
@@ -33,6 +33,6 @@ export default class Hub {
         .then((hashingSpaceAddress) => new HashingSpace(hashingSpaceAddress))
         .then(resolve)
         .catch(reject);
-    })
+    });
   }
 }

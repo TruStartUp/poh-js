@@ -1,6 +1,6 @@
-import Web3 from "web3";
+import Web3 from 'web3';
 
-export const HUB_ADDRESS = "0xCfEB869F69431e42cdB54A4F4f105C19C080A601";
+export const HUB_ADDRESS = '0xCfEB869F69431e42cdB54A4F4f105C19C080A601';
 /**
  * Returns a globally available web3 instance connected to the given provider or a ganache local
  * network by default.

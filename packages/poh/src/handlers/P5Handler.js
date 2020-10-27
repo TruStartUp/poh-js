@@ -8,7 +8,8 @@ const imageCloud = require('../assets/cloud.png');
 const imagePear = require('../assets/pear.png');
 
 export class P5Handler {
-  constructor(logoUrl, width, lightBackgroundColor, darkBackgroundColor) {
+  constructor(containerId = 'p5Canvas', logoUrl, width, lightBackgroundColor, darkBackgroundColor) {
+    this.containerId = containerId;
     this.logoUrl = logoUrl;
     this.width = width;
     this.lightBackgroundColor = lightBackgroundColor;
@@ -55,7 +56,7 @@ export class P5Handler {
       );
       puzzle.setup();
       canvas = p5.createCanvas(this.width, this.width);
-      canvas.parent('p5Canvas');
+      canvas.parent(this.containerId);
     };
 
     p5.draw = () => {

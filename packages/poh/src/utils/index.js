@@ -1,12 +1,12 @@
 import Web3 from 'web3';
 
-export const HUB_ADDRESS = '0xCfEB869F69431e42cdB54A4F4f105C19C080A601';
+export const HUB_ADDRESS = '0x34ae467b64c58431c188abb4ab06301807883ad0';
 /**
  * Returns a globally available web3 instance connected to the given provider or a ganache local
  * network by default.
  * @type {Web3}
  */
-export const web3 = new Web3('http://localhost:8545');
+export const web3 = new Web3('https://public-node.testnet.rsk.co');
 
 const internalSend = (signature, from) => new Promise((resolve, reject) => {
   signature.estimateGas({ from })

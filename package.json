@@ -1,10 +1,22 @@
 {
-  "name": "poh-js",
-  "version": "1.0.0",
+  "name": "@tru/poh-js",
+  "version": "0.0.1",
   "description": "Tru's Proof Of Humanity Library",
-  "main": "index.js",
+  "main": "packages/poh/src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "lerna run build",
+    "test": "npm run build && lerna exec -- npm test",
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean",
+    "format": "prettier --config ./.prettierrc --write ./packages/**/*.js",
+    "compile": "cd ./dependencies/contracts/ && truffle compile && cd ../.. && cp -R ./dependencies/contracts/build/contracts/ packages/poh",
+    "lint": "eslint --cache --fix ./packages/",
+    "release": "npm run version-check && lerna version --no-git-tag-version && npm run version-update",
+    "version-check": ".scripts/version-check.sh",
+    "version-update": ".scripts/version-update.sh",
+    "publish": ".scripts/publish.sh",
+    "pre-publish-checksums": ".scripts/pre-publish-checksums.sh",
+    "post-publish-checksums": ".scripts/post-publish-checksums.sh"
   },
   "repository": {
     "type": "git",
@@ -20,15 +32,33 @@
   },
   "homepage": "https://github.com/TruStartUp/poh-js#readme",
   "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@babel/preset-env": "^7.11.0",
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-export-default-from": "^7.10.4",
+    "@babel/plugin-proposal-export-namespace-from": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/polyfill": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/register": "^7.10.5",
+    "@rollup/plugin-babel": "^5.1.0",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "babel-eslint": "^10.1.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
     "lerna": "^3.22.1",
     "mocha": "^8.1.1",
-    "rollup": "^2.26.3",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "nyc": "^15.1.0",
+    "prettier": "^2.0.5",
+    "rollup": "^2.22.2",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-cleanup": "^3.1.1",
+    "sinon": "^9.0.2"
+  },
+  "dependencies": {
+    "web3": "^1.3.0"
   }
 }

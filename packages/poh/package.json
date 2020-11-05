@@ -1,6 +1,6 @@
 {
   "name": "@tru/poh",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Proof Of humanity core",
   "main": "dist/poh/index.cjs.js",
   "module": "dist/poh/index.esm.js",

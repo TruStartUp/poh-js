@@ -1,0 +1,22 @@
+{
+  "name": "@tru/poh",
+  "version": "0.0.1",
+  "description": "Proof Of humanity core",
+  "main": "dist/poh/index.cjs.js",
+  "module": "dist/poh/index.esm.js",
+  "browser": "dist/poh/index.umd.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "nyc mocha --recursive --exit"
+  },
+  "author": "Tru Startup SAS",
+  "homepage": "https://github.com/TruStartUp/poh-js/tree/master/packages/poh#readme",
+  "license": "ISC",
+  "dependencies": {
+    "image-js": "^0.30.3",
+    "p5": "^1.1.9",
+    "web3": "^1.3.0"
+  }
+}

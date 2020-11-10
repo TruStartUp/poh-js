@@ -6,4 +6,4 @@ set -e
 
 PACKAGES=$( ls ./packages/ )
 VERSION=$( node -p "require('./lerna.json').version" )
-npm version --no-git-tag-version ${VERSION}
+npm version --no-git-tag-version --allow-same-version ${VERSION}

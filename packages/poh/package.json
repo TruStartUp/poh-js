@@ -1,14 +1,16 @@
 {
-  "name": "@tru/poh",
-  "version": "0.0.1",
+  "name": "@trugroup/poh",
+  "version": "0.0.4",
   "description": "Proof Of humanity core",
-  "main": "dist/poh/index.cjs.js",
-  "module": "dist/poh/index.esm.js",
-  "browser": "dist/poh/index.umd.js",
+  "main": "dist/@trugroup/poh.cjs.js",
+  "module": "dist/@trugroup/poh.esm.js",
+  "browser": "dist/@trugroup/poh.umd.js",
   "files": [
     "dist"
   ],
   "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
     "test": "nyc mocha --recursive --exit"
   },
   "author": "Tru Startup SAS",

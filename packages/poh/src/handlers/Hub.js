@@ -1,4 +1,4 @@
-import { send, web3, HUB_ADDRESS } from '../utils';
+import { send, web3, HUB_ADDRESS } from '../utils/index';
 import HubContract from '../../contracts/Hub.json';
 import HashingSpace from './HashingSpace';
 

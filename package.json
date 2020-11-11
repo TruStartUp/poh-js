@@ -1,6 +1,6 @@
 {
   "name": "@trugroup/poh-js",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Tru's Proof Of Humanity Library",
   "main": "packages/poh/src/index.js",
   "scripts": {

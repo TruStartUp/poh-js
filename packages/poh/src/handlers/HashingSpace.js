@@ -1,4 +1,4 @@
-import { web3 } from '../utils';
+import { web3 } from '../utils/index';
 import HSContract from '../../contracts/HashingSpace.json';
 
 export default class HashingSpace {
